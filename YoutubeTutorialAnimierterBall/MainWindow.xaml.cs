@@ -17,11 +17,13 @@ namespace YoutubeTutorialAnimierterBall
     public partial class MainWindow : Window
     {
         private DispatcherTimer _animationTimer = new DispatcherTimer();
+
+        private bool goesRight = true;
         public MainWindow()
         {
             InitializeComponent();
 
-            _animationTimer.Interval = TimeSpan.FromMilliseconds(10);
+            _animationTimer.Interval = TimeSpan.FromMilliseconds(15);
             _animationTimer.Tick += positioniereBall;                       // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
         }
 
@@ -29,7 +31,24 @@ namespace YoutubeTutorialAnimierterBall
         {
             var x = Canvas.GetLeft(Ball);
 
-            Canvas.SetLeft(Ball, x + 1);
+            if (goesRight)
+            {
+                Canvas.SetLeft(Ball, x + 2);                
+            }
+            else
+            {
+                Canvas.SetLeft(Ball, x - 2);
+            }
+
+            if (x >= AnimationField.ActualWidth - Ball.ActualWidth)
+            {
+                goesRight = false;
+            }
+            else if (x <= 0)
+            {
+                goesRight = true;
+            }
+
         }
 
         private void StartStopAnimation_Click(object sender, RoutedEventArgs e)   // Button zum Starten und Stoppen der Animation
