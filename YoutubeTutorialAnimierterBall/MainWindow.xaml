@@ -17,7 +17,9 @@
         <Button x:Name="StartStopAnimation" Content="START/STOP" Width="70" Height="50" Click="StartStopAnimation_Click"/>
 
         <Canvas x:Name="AnimationField" Grid.Column="1" Background="DarkGreen">
-            <Ellipse x:Name="Ball" Width="23" Height="23" Fill="OrangeRed" Canvas.Left="100" Canvas.Top="50"/>
+            <Ellipse x:Name="Ball1" Width="23" Height="23" Fill="OrangeRed" Canvas.Left="100" Canvas.Top="50"/>
+            <Ellipse x:Name="Ball2" Width="23" Height="23" Fill="YellowGreen" Canvas.Left="333" Canvas.Top="88"/>
+            <Ellipse x:Name="Ball3" Width="23" Height="23" Fill="Black" Canvas.Left="512" Canvas.Top="158"/>
         </Canvas>
     </Grid>
 </Window>
