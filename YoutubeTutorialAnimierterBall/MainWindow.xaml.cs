@@ -25,11 +25,19 @@ namespace YoutubeTutorialAnimierterBall
         private bool ball1goesDown = true;
         private bool ball2goesDown = true;
         private bool ball3goesDown = true;
+
+        private bool ball1x_collision = false;
+        private bool ball2x_collision = false;
+        private bool ball3x_collision = false;
+        private bool ball1y_collision = false;
+        private bool ball2y_collision = false;
+        private bool ball3y_collision = false;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            _animationTimer.Interval    = TimeSpan.FromMilliseconds(15);
+            _animationTimer.Interval    = TimeSpan.FromMilliseconds(5);
             _animationTimer.Tick        += positioniereBall;                 // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
         }
 
@@ -41,6 +49,35 @@ namespace YoutubeTutorialAnimierterBall
             var ball1Y = Canvas.GetTop(Ball1);
             var ball2Y = Canvas.GetTop(Ball2);
             var ball3Y = Canvas.GetTop(Ball3);
+
+
+            if (ball1X == ball2X || ball1X == ball3X || ball1X == ball2Y || ball1X == ball3Y)        
+            {
+                ball1x_collision = true;
+            }
+            else if (ball1Y == ball2X || ball1Y == ball2Y || ball1Y == ball3X || ball1Y == ball3Y )
+            {
+                ball1y_collision = true;
+            }
+
+            if (ball2X >= AnimationField.ActualWidth - Ball2.ActualWidth)                  // In Arbeit !!! (Kollisionslogik)
+            {
+                ball2goesRight = false;
+            }
+            else if (ball2X <= 0)
+            {
+                ball2goesRight = true;
+            }
+
+            if (ball3X >= AnimationField.ActualWidth - Ball3.ActualWidth)
+            {
+                ball3goesRight = false;
+            }
+            else if (ball3X <= 0)
+            {
+                ball3goesRight = true;
+            }
+
 
             if (ball1X >= AnimationField.ActualWidth - Ball1.ActualWidth)         // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
             {
