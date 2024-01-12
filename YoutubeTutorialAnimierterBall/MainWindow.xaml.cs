@@ -18,18 +18,29 @@ namespace YoutubeTutorialAnimierterBall
     {
         private DispatcherTimer _animationTimer = new DispatcherTimer();
 
-        private bool goesRight = true;
+        private bool goesRight  = true;
+        private bool goesDown   = true;
         public MainWindow()
         {
             InitializeComponent();
 
-            _animationTimer.Interval = TimeSpan.FromMilliseconds(15);
-            _animationTimer.Tick += positioniereBall;                       // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
+            _animationTimer.Interval    = TimeSpan.FromMilliseconds(15);
+            _animationTimer.Tick        += positioniereBall;                 // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
         }
 
         private void positioniereBall(object? sender, EventArgs e)
         {
             var x = Canvas.GetLeft(Ball);
+            var y = Canvas.GetTop(Ball);
+
+            if (x >= AnimationField.ActualWidth - Ball.ActualWidth)         // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+            {
+                goesRight = false;
+            }
+            else if (x <= 0)
+            {
+                goesRight = true;
+            }
 
             if (goesRight)
             {
@@ -40,15 +51,23 @@ namespace YoutubeTutorialAnimierterBall
                 Canvas.SetLeft(Ball, x - 2);
             }
 
-            if (x >= AnimationField.ActualWidth - Ball.ActualWidth)
+            if (y >= AnimationField.ActualHeight - Ball.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
             {
-                goesRight = false;
+                goesDown = false;
             }
-            else if (x <= 0)
+            else if (y <= 0)
             {
-                goesRight = true;
+                goesDown = true;
             }
 
+            if (goesDown)
+            {
+                Canvas.SetTop(Ball, y + 2);
+            }
+            else
+            {
+                Canvas.SetTop(Ball, y - 2);
+            }
         }
 
         private void StartStopAnimation_Click(object sender, RoutedEventArgs e)   // Button zum Starten und Stoppen der Animation
@@ -62,10 +81,10 @@ namespace YoutubeTutorialAnimierterBall
                 _animationTimer.Start();
             }
 
-            //var mitteX = AnimationField.ActualWidth / 2;
+            //var mitteX = AnimationField.ActualWidth / 2;          
             //var mitteY = AnimationField.ActualHeight / 2;
 
-            //Canvas.SetLeft(Ball, mitteX);
+            //Canvas.SetLeft(Ball, mitteX);                         // Position auf X und Y Achse festlegen für Ball im Canvas Objekt !
             //Canvas.SetTop(Ball, mitteY);
         }
     }
