@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace YoutubeTutorialAnimierterBall
 {
@@ -15,18 +16,38 @@ namespace YoutubeTutorialAnimierterBall
     // Turorial Video auf Youtube zum Programm >> https://www.youtube.com/watch?v=ugji-_yWoRk
     public partial class MainWindow : Window
     {
+        private DispatcherTimer _animationTimer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
+
+            _animationTimer.Interval = TimeSpan.FromMilliseconds(10);
+            _animationTimer.Tick += positioniereBall;                       // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
         }
 
-        private void StartStopAnimation_Click(object sender, RoutedEventArgs e)
+        private void positioniereBall(object? sender, EventArgs e)
         {
-            var mitteX = AnimationField.ActualWidth / 2;
-            var mitteY = AnimationField.ActualHeight / 2;
+            var x = Canvas.GetLeft(Ball);
 
-            Canvas.SetLeft(Ball, mitteX);
-            Canvas.SetTop(Ball, mitteY);
+            Canvas.SetLeft(Ball, x + 1);
+        }
+
+        private void StartStopAnimation_Click(object sender, RoutedEventArgs e)   // Button zum Starten und Stoppen der Animation
+        {
+            if (_animationTimer.IsEnabled)
+            {
+                _animationTimer.Stop();
+            }
+            else
+            {
+                _animationTimer.Start();
+            }
+
+            //var mitteX = AnimationField.ActualWidth / 2;
+            //var mitteY = AnimationField.ActualHeight / 2;
+
+            //Canvas.SetLeft(Ball, mitteX);
+            //Canvas.SetTop(Ball, mitteY);
         }
     }
 }

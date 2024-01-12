@@ -17,7 +17,7 @@
         <Button x:Name="StartStopAnimation" Content="START/STOP" Width="70" Height="50" Click="StartStopAnimation_Click"/>
 
         <Canvas x:Name="AnimationField" Grid.Column="1" Background="DarkGreen">
-            <Ellipse x:Name="Ball" Width="23" Height="23" Fill="OrangeRed"/>
+            <Ellipse x:Name="Ball" Width="23" Height="23" Fill="OrangeRed" Canvas.Left="100" Canvas.Top="50"/>
         </Canvas>
     </Grid>
 </Window>
