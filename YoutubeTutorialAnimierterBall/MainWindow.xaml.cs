@@ -1,13 +1,5 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace YoutubeTutorialAnimierterBall
@@ -18,13 +10,14 @@ namespace YoutubeTutorialAnimierterBall
     {
         private readonly DispatcherTimer _animationTimer = new DispatcherTimer();
 
-        public bool ball1goesRight = true;
-        public bool ball2goesRight = true;
-        public bool ball3goesRight = true;
 
-        public bool ball1goesDown = true;
-        public bool ball2goesDown = true;
-        public bool ball3goesDown = true;
+        public bool ball1_collisionU = true;
+        public bool ball2_collisionU = true;
+        public bool ball3_collisionU = true;
+
+        public bool ball1_collisionD = false;
+        public bool ball2_collisionD = false;
+        public bool ball3_collisionD = false;
 
         public bool ball1_collisionL = true;
         public bool ball2_collisionL = true;
@@ -57,28 +50,28 @@ namespace YoutubeTutorialAnimierterBall
             var ball2_M = Canvas.GetLeft(Ball2) + (Ball2.ActualWidth / 2);
             var ball3_M = Canvas.GetLeft(Ball3) + (Ball3.ActualWidth / 2);
 
-            var ball1_dirX_right = ball1X + 1;
-            var ball2_dirX_right = ball2X + 1;
-            var ball3_dirX_right = ball3X + 1;
-            var ball1_dirX_left  = ball1X - 1;
-            var ball2_dirX_left  = ball2X - 1;
-            var ball3_dirX_left  = ball3X - 1;
+            var ball1_dirX_right = ball1X + 2;
+            var ball2_dirX_right = ball2X + 2;
+            var ball3_dirX_right = ball3X + 2;
+            var ball1_dirX_left  = ball1X - 2;
+            var ball2_dirX_left  = ball2X - 2;
+            var ball3_dirX_left  = ball3X - 2;
 
-            var ball1_dirY_down  = ball1Y + 1;
-            var ball2_dirY_down  = ball2Y + 1;
-            var ball3_dirY_down  = ball3Y + 1;
-            var ball1_dirY_up    = ball1Y - 1;
-            var ball2_dirY_up    = ball2Y - 1;
-            var ball3_dirY_up    = ball3Y - 1;
+            var ball1_dirY_down  = ball1Y + 2;
+            var ball2_dirY_down  = ball2Y + 2;
+            var ball3_dirY_down  = ball3Y + 2;
+            var ball1_dirY_up    = ball1Y - 2;
+            var ball2_dirY_up    = ball2Y - 2;
+            var ball3_dirY_up    = ball3Y - 2;
 
             PositionInfo.Content = $"Ball 1 M-Pos: {ball1_M} \n\nBall 2 M-Pos: {ball2_M} \n\nBall 3 M-Pos: {ball3_M}";
 
-            // Kollisionslogik
+            //Kollisionslogik Ball-Kollisionen                                  I N  A R B E I T !!!
 
-            if (ball1_M == ball2_M - Ball2.ActualWidth || ball1_M == ball3_M - Ball3.ActualWidth)        
+            if (ball1_M == ball2_M - Ball2.ActualWidth && ball1Y <= ball2Y || ball1_M == ball3_M - Ball3.ActualWidth)
             {
                 ball1_collisionR = true;
-                MessageBox.Show("Kollision R !!!");
+                //MessageBox.Show("Kollision R !!!");
                 ball1_collisionL = false;
             }
 
@@ -180,59 +173,67 @@ namespace YoutubeTutorialAnimierterBall
             }
 
 
+            // Kollisionslogik für Y-Achse
+
             if (ball1Y >= AnimationField.ActualHeight - Ball1.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
             {
-                ball1goesDown = false;
+                ball1_collisionD = true;
+                ball1_collisionU = false;
             }
             else if (ball1Y <= 0)
             {
-                ball1goesDown = true;
+                ball1_collisionU = true;
+                ball1_collisionD = false;
             }
 
             if (ball2Y >= AnimationField.ActualHeight - Ball2.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
             {
-                ball2goesDown = false;
+                ball2_collisionD = true;
+                ball2_collisionU = false;
             }
             else if (ball2Y <= 0)
             {
-                ball2goesDown = true;
+                ball2_collisionU = true;
+                ball2_collisionD = false;
             }
 
             if (ball3Y >= AnimationField.ActualHeight - Ball3.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
             {
-                ball3goesDown = false;
+                ball3_collisionD = true;
+                ball3_collisionU = false;
             }
             else if (ball3Y <= 0)
             {
-                ball3goesDown = true;
+                ball3_collisionU = true;
+                ball3_collisionD = false;
             }
 
 
-            if (ball1goesDown)
-            {
-                Canvas.SetTop(Ball1, ball1_dirY_down);
-            }
-            else
+            if (ball1_collisionD)
             {
                 Canvas.SetTop(Ball1, ball1_dirY_up);
             }
-
-            if (ball2goesDown)
+            else if (ball1_collisionU)
             {
-                Canvas.SetTop(Ball2, ball2_dirY_down);
+                Canvas.SetTop(Ball1, ball1_dirY_down);
             }
-            else
+
+            if (ball2_collisionD)
             {
                 Canvas.SetTop(Ball2, ball2_dirY_up);
             }
-
-            if (ball3goesDown)
+            else if (ball2_collisionU)
             {
-                Canvas.SetTop(Ball3, ball3_dirY_down);
+                Canvas.SetTop(Ball2, ball2_dirY_down);
             }
-            else
+
+            if (ball3_collisionD)
             {
                 Canvas.SetTop(Ball3, ball3_dirY_up);
+            }
+            else if (ball3_collisionU)
+            {
+                Canvas.SetTop(Ball3, ball3_dirY_down);
             }
         }
 

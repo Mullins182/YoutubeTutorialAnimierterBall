@@ -18,17 +18,17 @@
         <Label x:Name="PositionInfo" Height="200" Width="auto" Margin="0,-220,0,0" Background="Gray" Foreground="Black" FontWeight="Bold" BorderThickness="3" BorderBrush="OrangeRed"/>
 
         <Canvas x:Name="AnimationField" Grid.Column="1" Background="DarkGreen">
-            <Ellipse x:Name="Ball1" Width="50" Height="50" Canvas.Left="100" Canvas.Top="50">
+            <Ellipse x:Name="Ball1" Width="50" Height="50" Canvas.Left="100" Canvas.Top="10">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse x:Name="Ball2" Width="50" Height="50" Canvas.Left="333" Canvas.Top="88">
+            <Ellipse x:Name="Ball2" Width="50" Height="50" Canvas.Left="202" Canvas.Top="302">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse x:Name="Ball3" Width="50" Height="50" Canvas.Left="512" Canvas.Top="158">
+            <Ellipse x:Name="Ball3" Width="50" Height="50" Canvas.Left="304" Canvas.Top="134">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
