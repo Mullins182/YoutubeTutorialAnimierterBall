@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YoutubeTutorialAnimierterBall"
         mc:Ignorable="d"
-        Title="Ball Animation im Canvas Objekt" Height="450" Width="800">
+        Title="Ball Animation im Canvas Objekt" Height="450" Width="700">
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -14,8 +14,8 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="StartStopAnimation" Content="START/STOP" Width="auto" Height="50" Margin="0,100,0,0" FontWeight="Bold" Click="StartStopAnimation_Click"/>
-        <Label x:Name="PositionInfo" Height="200" Width="auto" Margin="0,-220,0,0" Background="Gray" Foreground="Black" FontWeight="Bold" BorderThickness="3" BorderBrush="OrangeRed"/>
+        <Button x:Name="StartStopAnimation" Content="START/STOP" Width="auto" Height="50" Margin="0,100,0,0" FontWeight="Bold" Background="Black" Foreground="OrangeRed" Click="StartStopAnimation_Click"/>
+        <Label x:Name="PositionInfo" Height="200" Width="auto" Margin="0,-220,0,0" Background="Black" Foreground="GreenYellow" FontWeight="Bold" BorderThickness="3" BorderBrush="OrangeRed"/>
 
         <Canvas x:Name="AnimationField" Grid.Column="1" Background="DarkGreen">
             <Ellipse x:Name="Ball1" Width="50" Height="50" Canvas.Left="100" Canvas.Top="10">
@@ -23,12 +23,12 @@
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse x:Name="Ball2" Width="50" Height="50" Canvas.Left="202" Canvas.Top="302">
+            <Ellipse x:Name="Ball2" Width="50" Height="50" Canvas.Left="192" Canvas.Top="62">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse x:Name="Ball3" Width="50" Height="50" Canvas.Left="304" Canvas.Top="134">
+            <Ellipse x:Name="Ball3" Width="50" Height="50" Canvas.Left="304" Canvas.Top="74">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
