@@ -32,11 +32,11 @@ namespace YoutubeTutorialAnimierterBall
             InitializeComponent();
 
             _animationTimer.Interval    = TimeSpan.FromMilliseconds(5);
-            _animationTimer.Tick        += positioniereBall;                 // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
+            _animationTimer.Tick        += PositioniereBall;                 // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
 
         }
 
-        public void positioniereBall(object? sender, EventArgs e)
+        public void PositioniereBall(object? sender, EventArgs e)
         {
 
             var ball1X = Canvas.GetLeft(Ball1);
