@@ -10,7 +10,7 @@ namespace YoutubeTutorialAnimierterBall
     {
         private readonly DispatcherTimer _animationTimer = new DispatcherTimer();
 
-
+        // Kollisionsprüfung X-Achse / Y-Achse
         private bool ball1_collisionU = true;
         private bool ball2_collisionU = true;
         private bool ball3_collisionU = true;
@@ -26,6 +26,7 @@ namespace YoutubeTutorialAnimierterBall
         private bool ball1_collisionR = false;
         private bool ball2_collisionR = false;
         private bool ball3_collisionR = false;
+
 
         public MainWindow()
         {
@@ -67,6 +68,9 @@ namespace YoutubeTutorialAnimierterBall
             PositionInfo.Content = $"Ball 1 M-Pos: {ball1_M} \n\nBall 2 M-Pos: {ball2_M} \n\nBall 3 M-Pos: {ball3_M} \n\nBall 1 Y-Pos: {ball1Y} \n\nBall 2 Y-Pos: {ball2Y} \n\nBall 3 Y-Pos: {ball3Y}";
 
             // Kollisionslogik Ball-Kollisionen                                  I N  A R B E I T !!!
+
+                // Reichweite Prüfung für Bälle
+
 
             if (ball1_M.CompareTo(ball2_M - Ball2.ActualWidth) == 0 || ball1_M.CompareTo(ball3_M - Ball3.ActualWidth) == 0)
             {
@@ -114,35 +118,53 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1Y.CompareTo(ball2Y - Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y - Ball1.ActualHeight) == 0)
             {
-                ball1_collisionU = true;
-                ball1_collisionD = false;
+                if (ball1_M.CompareTo(ball2_M) !> ball2_M && ball1_M.CompareTo(ball2_M) !< ball2_M || ball1_M.CompareTo(ball3_M) !> ball3_M && ball1_M.CompareTo(ball3_M) !< ball3_M) 
+                {
+                    ball1_collisionU = true;
+                    ball1_collisionD = false;
+                }
             }
             else if (ball1Y.CompareTo(ball2Y + Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y + Ball1.ActualHeight) == 0)
             {
-                ball1_collisionU = false;
-                ball1_collisionD = true;
+                if (ball1_M.CompareTo(ball2_M) !> ball2_M && ball1_M.CompareTo(ball2_M) !< ball2_M || ball1_M.CompareTo(ball3_M) !> ball3_M && ball1_M.CompareTo(ball3_M) !< ball3_M)
+                {
+                    ball1_collisionU = false;
+                    ball1_collisionD = true;
+                }
             }
 
             if (ball2Y.CompareTo(ball1Y - Ball2.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y - Ball2.ActualHeight) == 0)
             {
-                ball2_collisionU = true;
-                ball2_collisionD = false;
+                if (ball2_M.CompareTo(ball1_M) !> ball1_M && ball2_M.CompareTo(ball1_M) !< ball1_M || ball2_M.CompareTo(ball3_M) !> ball3_M && ball2_M.CompareTo(ball3_M) !< ball3_M)
+                {
+                    ball2_collisionU = true;
+                    ball2_collisionD = false;
+                }
             }
             else if (ball2Y.CompareTo(ball1Y + Ball2.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y + Ball2.ActualHeight) == 0)
             {
-                ball2_collisionU = false;
-                ball2_collisionD = true;
+                if (ball2_M.CompareTo(ball1_M) !> ball1_M && ball2_M.CompareTo(ball1_M) !< ball1_M || ball2_M.CompareTo(ball3_M) !> ball3_M && ball2_M.CompareTo(ball3_M) !< ball3_M)
+                {
+                    ball2_collisionU = false;
+                    ball2_collisionD = true;
+                }
             }
 
             if (ball3Y.CompareTo(ball1Y - Ball3.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y - Ball3.ActualHeight) == 0)
             {
-                ball3_collisionU = true;
-                ball3_collisionD = false;
+                if (ball3_M.CompareTo(ball1_M) !> ball1_M && ball3_M.CompareTo(ball1_M) !< ball1_M || ball3_M.CompareTo(ball2_M) !> ball2_M && ball3_M.CompareTo(ball2_M) !< ball2_M)
+                {
+                    ball3_collisionU = true;
+                    ball3_collisionD = false;
+                }
             }
             else if (ball3Y.CompareTo(ball1Y + Ball3.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y + Ball3.ActualHeight) == 0)
             {
-                ball3_collisionU = false;
-                ball3_collisionD = true;
+                if (ball3_M.CompareTo(ball1_M) !> ball1_M && ball3_M.CompareTo(ball1_M) !< ball1_M || ball3_M.CompareTo(ball2_M) !> ball2_M && ball3_M.CompareTo(ball2_M) !< ball2_M)
+                {
+                    ball3_collisionU = false;
+                    ball3_collisionD = true;
+                }
             }
 
 
