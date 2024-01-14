@@ -51,6 +51,13 @@ namespace YoutubeTutorialAnimierterBall
             var ball2_M = Canvas.GetLeft(Ball2) + (Ball2.ActualWidth / 2);
             var ball3_M = Canvas.GetLeft(Ball3) + (Ball3.ActualWidth / 2);
 
+            var b1_h = Ball1.ActualHeight;
+            var b2_h = Ball2.ActualHeight;
+            var b3_h = Ball3.ActualHeight;
+            var b1_w = Ball1.ActualWidth;
+            var b2_w = Ball2.ActualWidth;
+            var b3_w = Ball3.ActualWidth;
+
             var ball1_dirX_right = ball1X + 1;
             var ball2_dirX_right = ball2X + 1;
             var ball3_dirX_right = ball3X + 1;
@@ -69,56 +76,72 @@ namespace YoutubeTutorialAnimierterBall
 
             // Kollisionslogik Ball-Kollisionen                                  I N  A R B E I T !!!
 
-                // Reichweite Prüfung für Bälle
-
 
             if (ball1_M.CompareTo(ball2_M - Ball2.ActualWidth) == 0 || ball1_M.CompareTo(ball3_M - Ball3.ActualWidth) == 0)
             {
-                ball1_collisionR = true;
-                //MessageBox.Show("Kollision R !!!");
-                ball1_collisionL = false;
+                if (ball1Y.CompareTo(ball2Y)! > b2_h && ball1Y.CompareTo(ball2Y)! < b2_h - (b2_h * 2) || ball1Y.CompareTo(ball3Y)! > b3_h && ball1Y.CompareTo(ball3Y)! < b3_h - (b3_h * 2))
+                {
+                    ball1_collisionR = true;
+                    //MessageBox.Show("Kollision R !!!");
+                    ball1_collisionL = false;
+                }
             }
 
             if (ball2_M.CompareTo(ball1_M - Ball1.ActualWidth) == 0 || ball2_M.CompareTo(ball3_M - Ball3.ActualWidth) == 0)
             {
-                ball2_collisionR = true;
-                //MessageBox.Show("Kollision R !!!");
-                ball2_collisionL = false;
+                if (ball2Y.CompareTo(ball1Y)! > b1_h && ball2Y.CompareTo(ball1Y)! < b1_h - (b1_h * 2) || ball2Y.CompareTo(ball3Y)! > b3_h && ball2Y.CompareTo(ball3Y)! < b3_h - (b3_h * 2))
+                {
+                    ball2_collisionR = true;
+                    //MessageBox.Show("Kollision R !!!");
+                    ball2_collisionL = false;
+                }
             }
 
             if (ball3_M.CompareTo(ball1_M - Ball1.ActualWidth) == 0 || ball3_M.CompareTo(ball2_M - Ball2.ActualWidth) == 0)
             {
-                ball3_collisionR = true;
-                //MessageBox.Show("Kollision R !!!");
-                ball3_collisionL = false;
+                if (ball3Y.CompareTo(ball1Y)! > b1_h && ball3Y.CompareTo(ball1Y)! < b1_h - (b1_h * 2) || ball3Y.CompareTo(ball2Y)! > b2_h && ball3Y.CompareTo(ball2Y)! < b2_h - (b2_h * 2))
+                {
+                    ball3_collisionR = true;
+                    //MessageBox.Show("Kollision R !!!");
+                    ball3_collisionL = false;
+                }
             }
 
             if (ball1_M.CompareTo(ball2_M + Ball2.ActualWidth) == 0 || ball1_M.CompareTo(ball3_M + Ball3.ActualWidth) == 0)
             {
-                ball1_collisionR = false;
-                //MessageBox.Show("Kollision L !!!");
-                ball1_collisionL = true;
+                if (ball1Y.CompareTo(ball2Y)! > b2_h && ball1Y.CompareTo(ball2Y)! < b2_h - (b2_h * 2) || ball1Y.CompareTo(ball3Y)! > b3_h && ball1Y.CompareTo(ball3Y)! < b3_h - (b3_h * 2))
+                {
+                    ball1_collisionR = false;
+                    //MessageBox.Show("Kollision L !!!");
+                    ball1_collisionL = true;
+                }
             }
 
             if (ball2_M.CompareTo(ball1_M + Ball1.ActualWidth) == 0 || ball2_M.CompareTo(ball3_M + Ball3.ActualWidth) == 0)
             {
-                ball2_collisionR = false;
-                //MessageBox.Show("Kollision L !!!");
-                ball2_collisionL = true;
+                if (ball2Y.CompareTo(ball1Y)! > b1_h && ball2Y.CompareTo(ball1Y)! < b1_h - (b1_h * 2) || ball2Y.CompareTo(ball3Y)! > b3_h && ball2Y.CompareTo(ball3Y)! < b3_h - (b3_h * 2))
+                {
+                    ball2_collisionR = false;
+                    //MessageBox.Show("Kollision L !!!");
+                    ball2_collisionL = true;
+                }
             }
 
             if (ball3_M.CompareTo(ball1_M + Ball1.ActualWidth) == 0 || ball1_M.CompareTo(ball2_M + Ball2.ActualWidth) == 0)
             {
-                ball3_collisionR = false;
-                //MessageBox.Show("Kollision L !!!");
-                ball3_collisionL = true;
+                if (ball3Y.CompareTo(ball1Y)! > b1_h && ball3Y.CompareTo(ball1Y)! < b1_h - (b1_h * 2) || ball3Y.CompareTo(ball2Y)! > b2_h && ball3Y.CompareTo(ball2Y)! < b2_h - (b2_h * 2))
+                {
+                    ball3_collisionR = false;
+                    //MessageBox.Show("Kollision L !!!");
+                    ball3_collisionL = true;
+                }
             }
 
             // Kollisionslogik für Y-Achse
 
             if (ball1Y.CompareTo(ball2Y - Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y - Ball1.ActualHeight) == 0)
             {
-                if (ball1_M.CompareTo(ball2_M) !> ball2_M && ball1_M.CompareTo(ball2_M) !< ball2_M || ball1_M.CompareTo(ball3_M) !> ball3_M && ball1_M.CompareTo(ball3_M) !< ball3_M) 
+                if (ball1_M.CompareTo(ball2_M) !> b2_w && ball1_M.CompareTo(ball2_M) !< b2_w - (b2_w * 2) || ball1_M.CompareTo(ball3_M) !> b3_w && ball1_M.CompareTo(ball3_M) !< b3_w - (b3_w * 2)) 
                 {
                     ball1_collisionU = true;
                     ball1_collisionD = false;
@@ -126,7 +149,7 @@ namespace YoutubeTutorialAnimierterBall
             }
             else if (ball1Y.CompareTo(ball2Y + Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y + Ball1.ActualHeight) == 0)
             {
-                if (ball1_M.CompareTo(ball2_M) !> ball2_M && ball1_M.CompareTo(ball2_M) !< ball2_M || ball1_M.CompareTo(ball3_M) !> ball3_M && ball1_M.CompareTo(ball3_M) !< ball3_M)
+                if (ball1_M.CompareTo(ball2_M)! > b2_w && ball1_M.CompareTo(ball2_M)! < b2_w - (b2_w * 2) || ball1_M.CompareTo(ball3_M)! > b3_w && ball1_M.CompareTo(ball3_M)! < b3_w - (b3_w * 2))
                 {
                     ball1_collisionU = false;
                     ball1_collisionD = true;
@@ -135,7 +158,7 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball2Y.CompareTo(ball1Y - Ball2.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y - Ball2.ActualHeight) == 0)
             {
-                if (ball2_M.CompareTo(ball1_M) !> ball1_M && ball2_M.CompareTo(ball1_M) !< ball1_M || ball2_M.CompareTo(ball3_M) !> ball3_M && ball2_M.CompareTo(ball3_M) !< ball3_M)
+                if (ball2_M.CompareTo(ball1_M) !> b1_w && ball2_M.CompareTo(ball1_M) !< b1_w - (b1_w * 2) || ball2_M.CompareTo(ball3_M) !> b3_w && ball2_M.CompareTo(ball3_M) !< b3_w - (b3_w * 2))
                 {
                     ball2_collisionU = true;
                     ball2_collisionD = false;
@@ -143,7 +166,7 @@ namespace YoutubeTutorialAnimierterBall
             }
             else if (ball2Y.CompareTo(ball1Y + Ball2.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y + Ball2.ActualHeight) == 0)
             {
-                if (ball2_M.CompareTo(ball1_M) !> ball1_M && ball2_M.CompareTo(ball1_M) !< ball1_M || ball2_M.CompareTo(ball3_M) !> ball3_M && ball2_M.CompareTo(ball3_M) !< ball3_M)
+                if (ball2_M.CompareTo(ball1_M)! > b1_w && ball2_M.CompareTo(ball1_M)! < b1_w - (b1_w * 2) || ball2_M.CompareTo(ball3_M)! > b3_w && ball2_M.CompareTo(ball3_M)! < b3_w - (b3_w * 2))
                 {
                     ball2_collisionU = false;
                     ball2_collisionD = true;
@@ -152,7 +175,7 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball3Y.CompareTo(ball1Y - Ball3.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y - Ball3.ActualHeight) == 0)
             {
-                if (ball3_M.CompareTo(ball1_M) !> ball1_M && ball3_M.CompareTo(ball1_M) !< ball1_M || ball3_M.CompareTo(ball2_M) !> ball2_M && ball3_M.CompareTo(ball2_M) !< ball2_M)
+                if (ball3_M.CompareTo(ball1_M) !> b1_w && ball3_M.CompareTo(ball1_M) !< b1_w - (b1_w * 2) || ball3_M.CompareTo(ball2_M) !> b2_w && ball3_M.CompareTo(ball2_M) !< b2_w - (b2_w * 2))
                 {
                     ball3_collisionU = true;
                     ball3_collisionD = false;
@@ -160,58 +183,16 @@ namespace YoutubeTutorialAnimierterBall
             }
             else if (ball3Y.CompareTo(ball1Y + Ball3.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y + Ball3.ActualHeight) == 0)
             {
-                if (ball3_M.CompareTo(ball1_M) !> ball1_M && ball3_M.CompareTo(ball1_M) !< ball1_M || ball3_M.CompareTo(ball2_M) !> ball2_M && ball3_M.CompareTo(ball2_M) !< ball2_M)
+                if (ball3_M.CompareTo(ball1_M)! > b1_w && ball3_M.CompareTo(ball1_M)! < b1_w - (b1_w * 2) || ball3_M.CompareTo(ball2_M)! > b2_w && ball3_M.CompareTo(ball2_M)! < b2_w - (b2_w * 2))
                 {
                     ball3_collisionU = false;
                     ball3_collisionD = true;
                 }
             }
 
+            // Kollisionslogik Canvas Grenzen
 
-            //if (ball1Y.CompareTo(ball2Y + Ball2.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y + Ball3.ActualHeight) == 0)
-            //{
-            //    ball1_collisionU = true;
-            //    //MessageBox.Show("Kollision U !!!");
-            //    ball1_collisionD = false;
-            //}
-
-            //if (ball2Y.CompareTo(ball1Y + Ball1.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y + Ball3.ActualHeight) == 0)
-            //{
-            //    ball2_collisionU = true;
-            //    //MessageBox.Show("Kollision U !!!");
-            //    ball2_collisionD = false;
-            //}
-
-            //if (ball3Y.CompareTo(ball1Y + Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball2Y + Ball2.ActualHeight) == 0)
-            //{
-            //    ball3_collisionU = true;
-            //    //MessageBox.Show("Kollision U !!!");
-            //    ball3_collisionD = false;
-            //}
-
-            //if (ball1Y.CompareTo(ball2Y - Ball2.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y - Ball3.ActualHeight) == 0)
-            //{
-            //    ball1_collisionU = false;
-            //    //MessageBox.Show("Kollision D !!!");
-            //    ball1_collisionD = true;
-            //}
-
-            //if (ball2Y.CompareTo(ball1Y - Ball1.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y - Ball3.ActualHeight) == 0)
-            //{
-            //    ball2_collisionU = false;
-            //    //MessageBox.Show("Kollision D !!!");
-            //    ball2_collisionD = true;
-            //}
-
-            //if (ball3Y.CompareTo(ball1Y - Ball1.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y - Ball2.ActualHeight) == 0)
-            //{
-            //    ball3_collisionU = false;
-            //    //MessageBox.Show("Kollision D !!!");
-            //    ball3_collisionD = true;
-            //}
-
-
-            if (ball1_M >= AnimationField.ActualWidth - Ball1.ActualWidth / 2)         // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+            if (ball1_M >= AnimationField.ActualWidth - Ball1.ActualWidth / 2)         
             {
                 ball1_collisionL = false;
                 ball1_collisionR = true;
@@ -244,6 +225,42 @@ namespace YoutubeTutorialAnimierterBall
                 ball3_collisionR = false;
             }
 
+            // Kollisionslogik Canvas Grenzen für Y-Achse
+
+            if (ball1Y >= AnimationField.ActualHeight - Ball1.ActualHeight)       
+            {
+                ball1_collisionD = true;
+                ball1_collisionU = false;
+            }
+            else if (ball1Y <= 0)
+            {
+                ball1_collisionU = true;
+                ball1_collisionD = false;
+            }
+
+            if (ball2Y >= AnimationField.ActualHeight - Ball2.ActualHeight)       
+            {
+                ball2_collisionD = true;
+                ball2_collisionU = false;
+            }
+            else if (ball2Y <= 0)
+            {
+                ball2_collisionU = true;
+                ball2_collisionD = false;
+            }
+
+            if (ball3Y >= AnimationField.ActualHeight - Ball3.ActualHeight)       
+            {
+                ball3_collisionD = true;
+                ball3_collisionU = false;
+            }
+            else if (ball3Y <= 0)
+            {
+                ball3_collisionU = true;
+                ball3_collisionD = false;
+            }
+
+            // Bewegungslogik der Bälle für X-Achse
 
             if (ball1_collisionL)
             {
@@ -272,42 +289,7 @@ namespace YoutubeTutorialAnimierterBall
                 Canvas.SetLeft(Ball3, ball3_dirX_left);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
             }
 
-
-            // Kollisionslogik für Y-Achse
-
-            if (ball1Y >= AnimationField.ActualHeight - Ball1.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
-            {
-                ball1_collisionD = true;
-                ball1_collisionU = false;
-            }
-            else if (ball1Y <= 0)
-            {
-                ball1_collisionU = true;
-                ball1_collisionD = false;
-            }
-
-            if (ball2Y >= AnimationField.ActualHeight - Ball2.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
-            {
-                ball2_collisionD = true;
-                ball2_collisionU = false;
-            }
-            else if (ball2Y <= 0)
-            {
-                ball2_collisionU = true;
-                ball2_collisionD = false;
-            }
-
-            if (ball3Y >= AnimationField.ActualHeight - Ball3.ActualHeight)       // Ball im Canvas auf der Y-Achse (auf/ab) bewegen !
-            {
-                ball3_collisionD = true;
-                ball3_collisionU = false;
-            }
-            else if (ball3Y <= 0)
-            {
-                ball3_collisionU = true;
-                ball3_collisionD = false;
-            }
-
+            // Bewegungslogik der Bälle für Y-Achse
 
             if (ball1_collisionD)
             {
