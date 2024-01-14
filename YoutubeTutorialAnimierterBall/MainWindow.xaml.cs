@@ -11,21 +11,21 @@ namespace YoutubeTutorialAnimierterBall
         private readonly DispatcherTimer _animationTimer = new DispatcherTimer();
 
 
-        public bool ball1_collisionU = true;
-        public bool ball2_collisionU = true;
-        public bool ball3_collisionU = true;
+        private bool ball1_collisionU = true;
+        private bool ball2_collisionU = true;
+        private bool ball3_collisionU = true;
 
-        public bool ball1_collisionD = false;
-        public bool ball2_collisionD = false;
-        public bool ball3_collisionD = false;
+        private bool ball1_collisionD = false;
+        private bool ball2_collisionD = false;
+        private bool ball3_collisionD = false;
 
-        public bool ball1_collisionL = true;
-        public bool ball2_collisionL = true;
-        public bool ball3_collisionL = true;
+        private bool ball1_collisionL = true;
+        private bool ball2_collisionL = true;
+        private bool ball3_collisionL = true;
 
-        public bool ball1_collisionR = false;
-        public bool ball2_collisionR = false;
-        public bool ball3_collisionR = false;
+        private bool ball1_collisionR = false;
+        private bool ball2_collisionR = false;
+        private bool ball3_collisionR = false;
 
         public MainWindow()
         {
@@ -112,47 +112,81 @@ namespace YoutubeTutorialAnimierterBall
 
             // Kollisionslogik für Y-Achse
 
-            if (ball1Y.CompareTo(ball2Y + Ball2.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y + Ball3.ActualHeight) == 0)
+            if (ball1Y.CompareTo(ball2Y - Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y - Ball1.ActualHeight) == 0)
             {
                 ball1_collisionU = true;
-                //MessageBox.Show("Kollision U !!!");
                 ball1_collisionD = false;
             }
-
-            if (ball2Y.CompareTo(ball1Y + Ball1.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y + Ball3.ActualHeight) == 0)
-            {
-                ball2_collisionU = true;
-                //MessageBox.Show("Kollision U !!!");
-                ball2_collisionD = false;
-            }
-
-            if (ball3Y.CompareTo(ball1Y + Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball2Y + Ball2.ActualHeight) == 0)
-            {
-                ball3_collisionU = true;
-                //MessageBox.Show("Kollision U !!!");
-                ball3_collisionD = false;
-            }
-
-            if (ball1Y.CompareTo(ball2Y - Ball2.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y - Ball3.ActualHeight) == 0)
+            else if (ball1Y.CompareTo(ball2Y + Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y + Ball1.ActualHeight) == 0)
             {
                 ball1_collisionU = false;
-                //MessageBox.Show("Kollision D !!!");
                 ball1_collisionD = true;
             }
 
-            if (ball2Y.CompareTo(ball1Y - Ball1.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y - Ball3.ActualHeight) == 0)
+            if (ball2Y.CompareTo(ball1Y - Ball2.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y - Ball2.ActualHeight) == 0)
+            {
+                ball2_collisionU = true;
+                ball2_collisionD = false;
+            }
+            else if (ball2Y.CompareTo(ball1Y + Ball2.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y + Ball2.ActualHeight) == 0)
             {
                 ball2_collisionU = false;
-                //MessageBox.Show("Kollision D !!!");
                 ball2_collisionD = true;
             }
 
-            if (ball3Y.CompareTo(ball1Y - Ball1.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y - Ball2.ActualHeight) == 0)
+            if (ball3Y.CompareTo(ball1Y - Ball3.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y - Ball3.ActualHeight) == 0)
+            {
+                ball3_collisionU = true;
+                ball3_collisionD = false;
+            }
+            else if (ball3Y.CompareTo(ball1Y + Ball3.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y + Ball3.ActualHeight) == 0)
             {
                 ball3_collisionU = false;
-                //MessageBox.Show("Kollision D !!!");
                 ball3_collisionD = true;
             }
+
+
+            //if (ball1Y.CompareTo(ball2Y + Ball2.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y + Ball3.ActualHeight) == 0)
+            //{
+            //    ball1_collisionU = true;
+            //    //MessageBox.Show("Kollision U !!!");
+            //    ball1_collisionD = false;
+            //}
+
+            //if (ball2Y.CompareTo(ball1Y + Ball1.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y + Ball3.ActualHeight) == 0)
+            //{
+            //    ball2_collisionU = true;
+            //    //MessageBox.Show("Kollision U !!!");
+            //    ball2_collisionD = false;
+            //}
+
+            //if (ball3Y.CompareTo(ball1Y + Ball1.ActualHeight) == 0 || ball1Y.CompareTo(ball2Y + Ball2.ActualHeight) == 0)
+            //{
+            //    ball3_collisionU = true;
+            //    //MessageBox.Show("Kollision U !!!");
+            //    ball3_collisionD = false;
+            //}
+
+            //if (ball1Y.CompareTo(ball2Y - Ball2.ActualHeight) == 0 || ball1Y.CompareTo(ball3Y - Ball3.ActualHeight) == 0)
+            //{
+            //    ball1_collisionU = false;
+            //    //MessageBox.Show("Kollision D !!!");
+            //    ball1_collisionD = true;
+            //}
+
+            //if (ball2Y.CompareTo(ball1Y - Ball1.ActualHeight) == 0 || ball2Y.CompareTo(ball3Y - Ball3.ActualHeight) == 0)
+            //{
+            //    ball2_collisionU = false;
+            //    //MessageBox.Show("Kollision D !!!");
+            //    ball2_collisionD = true;
+            //}
+
+            //if (ball3Y.CompareTo(ball1Y - Ball1.ActualHeight) == 0 || ball3Y.CompareTo(ball2Y - Ball2.ActualHeight) == 0)
+            //{
+            //    ball3_collisionU = false;
+            //    //MessageBox.Show("Kollision D !!!");
+            //    ball3_collisionD = true;
+            //}
 
 
             if (ball1_M >= AnimationField.ActualWidth - Ball1.ActualWidth / 2)         // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
