@@ -28,10 +28,7 @@ namespace YoutubeTutorialAnimierterBall
         private bool ball2_collisionR = false;
         private bool ball3_collisionR = false;
 
-        //MediaElement sound  = new MediaElement();
-        //MediaElement sound2 = new MediaElement();
-        //MediaElement sound3 = new MediaElement();
-
+        private Int16 counter = 0;
 
         public MainWindow()
         {
@@ -88,39 +85,39 @@ namespace YoutubeTutorialAnimierterBall
             var b3_w = Ball3.ActualWidth;
 
             var smiley1_dirX_right  = smiley1X + 1;
-            var smiley2_dirX_right  = smiley2X + 1.3;
-            var smiley3_dirX_right  = smiley3X + 1.5;
+            var smiley2_dirX_right  = smiley2X + 1;
+            var smiley3_dirX_right  = smiley3X + 1;
             var smiley1_dirX_left   = smiley1X - 1;
-            var smiley2_dirX_left   = smiley2X - 1.3;
-            var smiley3_dirX_left   = smiley3X - 1.5;
+            var smiley2_dirX_left   = smiley2X - 1;
+            var smiley3_dirX_left   = smiley3X - 1;
 
             var smiley1_dirY_down   = smiley1Y + 1;
-            var smiley2_dirY_down   = smiley2Y + 1.3;
-            var smiley3_dirY_down   = smiley3Y + 1.5;
+            var smiley2_dirY_down   = smiley2Y + 1;
+            var smiley3_dirY_down   = smiley3Y + 1;
             var smiley1_dirY_up     = smiley1Y - 1;
-            var smiley2_dirY_up     = smiley2Y - 1.3;
-            var smiley3_dirY_up     = smiley3Y - 1.5;
+            var smiley2_dirY_up     = smiley2Y - 1;
+            var smiley3_dirY_up     = smiley3Y - 1;
 
             var ball1_dirX_right    = ball1X + 1;
-            var ball2_dirX_right    = ball2X + 1.3;
-            var ball3_dirX_right    = ball3X + 1.5;
+            var ball2_dirX_right    = ball2X + 1;
+            var ball3_dirX_right    = ball3X + 1;
             var ball1_dirX_left     = ball1X - 1;
-            var ball2_dirX_left     = ball2X - 1.3;
-            var ball3_dirX_left     = ball3X - 1.5;
+            var ball2_dirX_left     = ball2X - 1;
+            var ball3_dirX_left     = ball3X - 1;
 
             var ball1_dirY_down     = ball1Y + 1;
-            var ball2_dirY_down     = ball2Y + 1.3;
-            var ball3_dirY_down     = ball3Y + 1.5;
+            var ball2_dirY_down     = ball2Y + 1;
+            var ball3_dirY_down     = ball3Y + 1;
             var ball1_dirY_up       = ball1Y - 1;
-            var ball2_dirY_up       = ball2Y - 1.3;
-            var ball3_dirY_up       = ball3Y - 1.5;
+            var ball2_dirY_up       = ball2Y - 1;
+            var ball3_dirY_up       = ball3Y - 1;
 
-            PositionInfo.Content = $"Ball 1 M-Pos: {((Int16)ball1_M)} \n\nBall 2 M-Pos: {((Int16)ball2_M)} \n\nBall 3 M-Pos: {((Int16)ball3_M)} \n\nBall 1 Y-Pos: {((Int16)ball1Y)} \n\nBall 2 Y-Pos: {((Int16)ball2Y)} \n\nBall 3 Y-Pos: {((Int16)ball3Y)}";
+            PositionInfo.Content = $"Counter: {counter} \n\nBall 2 M-Pos: {((Int16)ball2_M)} \n\nBall 3 M-Pos: {((Int16)ball3_M)} \n\nBall 1 Y-Pos: {((Int16)ball1Y)} \n\nBall 2 Y-Pos: {((Int16)ball2Y)} \n\nBall 3 Y-Pos: {((Int16)ball3Y)}";
 
             // Kollisionslogik Ball-Kollisionen                                  I N  A R B E I T !!!
 
 
-            if (ball1_M.CompareTo(ball2_M) < Ball2.ActualWidth && ball1Y.CompareTo(ball2Y) < Ball2.ActualHeight - (Ball2.ActualHeight * 2))
+            if (ball1_M.CompareTo(ball2_M) !> 50 && ball1Y.CompareTo(ball2Y) !> 50)
             {
                 ball1_collisionR = true;
                 ball1_collisionL = false;
@@ -146,14 +143,12 @@ namespace YoutubeTutorialAnimierterBall
                 }
             }
 
-            if (ball1_M.CompareTo(ball2_M + Ball2.ActualWidth) == 0 || ball1_M.CompareTo(ball3_M + Ball3.ActualWidth) == 0)
+            if (ball1_M.CompareTo(ball2_M) !> 50 && ball1Y.CompareTo(ball2Y) !> 50)
             {
-                if (ball1Y.CompareTo(ball2Y)! > b2_h && ball1Y.CompareTo(ball2Y)! < b2_h - (b2_h * 2) || ball1Y.CompareTo(ball3Y)! > b3_h && ball1Y.CompareTo(ball3Y)! < b3_h - (b3_h * 2))
-                {
+                    counter++;
                     ball1_collisionR = false;
                     //MessageBox.Show("Kollision L !!!");
                     ball1_collisionL = true;
-                }
             }
 
             if (ball2_M.CompareTo(ball1_M + Ball1.ActualWidth) == 0 || ball2_M.CompareTo(ball3_M + Ball3.ActualWidth) == 0)
