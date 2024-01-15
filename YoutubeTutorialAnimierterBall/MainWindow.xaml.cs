@@ -39,6 +39,13 @@ namespace YoutubeTutorialAnimierterBall
 
         public void PositioniereBall(object? sender, EventArgs e)
         {
+            var smiley1X = Canvas.GetLeft(Smiley1);
+            var smiley2X = Canvas.GetLeft(Smiley2);
+            var smiley3X = Canvas.GetLeft(Smiley3);
+
+            var smiley1Y = Canvas.GetTop(Smiley1);
+            var smiley2Y = Canvas.GetTop(Smiley2);
+            var smiley3Y = Canvas.GetTop(Smiley3);
 
             var ball1X = Canvas.GetLeft(Ball1);
             var ball2X = Canvas.GetLeft(Ball2);
@@ -58,19 +65,33 @@ namespace YoutubeTutorialAnimierterBall
             var b2_w = Ball2.ActualWidth;
             var b3_w = Ball3.ActualWidth;
 
-            var ball1_dirX_right = ball1X + 1;
-            var ball2_dirX_right = ball2X + 1;
-            var ball3_dirX_right = ball3X + 1;
-            var ball1_dirX_left  = ball1X - 1;
-            var ball2_dirX_left  = ball2X - 1;
-            var ball3_dirX_left  = ball3X - 1;
+            var smiley1_dirX_right  = smiley1X + 1;
+            var smiley2_dirX_right  = smiley2X + 1;
+            var smiley3_dirX_right  = smiley3X + 1;
+            var smiley1_dirX_left   = smiley1X - 1;
+            var smiley2_dirX_left   = smiley2X - 1;
+            var smiley3_dirX_left   = smiley3X - 1;
 
-            var ball1_dirY_down  = ball1Y + 1;
-            var ball2_dirY_down  = ball2Y + 1;
-            var ball3_dirY_down  = ball3Y + 1;
-            var ball1_dirY_up    = ball1Y - 1;
-            var ball2_dirY_up    = ball2Y - 1;
-            var ball3_dirY_up    = ball3Y - 1;
+            var smiley1_dirY_down   = smiley1Y + 1;
+            var smiley2_dirY_down   = smiley2Y + 1;
+            var smiley3_dirY_down   = smiley3Y + 1;
+            var smiley1_dirY_up     = smiley1Y - 1;
+            var smiley2_dirY_up     = smiley2Y - 1;
+            var smiley3_dirY_up     = smiley3Y - 1;
+
+            var ball1_dirX_right    = ball1X + 1;
+            var ball2_dirX_right    = ball2X + 1;
+            var ball3_dirX_right    = ball3X + 1;
+            var ball1_dirX_left     = ball1X - 1;
+            var ball2_dirX_left     = ball2X - 1;
+            var ball3_dirX_left     = ball3X - 1;
+
+            var ball1_dirY_down     = ball1Y + 1;
+            var ball2_dirY_down     = ball2Y + 1;
+            var ball3_dirY_down     = ball3Y + 1;
+            var ball1_dirY_up       = ball1Y - 1;
+            var ball2_dirY_up       = ball2Y - 1;
+            var ball3_dirY_up       = ball3Y - 1;
 
             PositionInfo.Content = $"Ball 1 M-Pos: {ball1_M} \n\nBall 2 M-Pos: {ball2_M} \n\nBall 3 M-Pos: {ball3_M} \n\nBall 1 Y-Pos: {ball1Y} \n\nBall 2 Y-Pos: {ball2Y} \n\nBall 3 Y-Pos: {ball3Y}";
 
@@ -265,28 +286,39 @@ namespace YoutubeTutorialAnimierterBall
             if (ball1_collisionL)
             {
                 Canvas.SetLeft(Ball1, ball1_dirX_right);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+                Canvas.SetLeft(Smiley1, smiley1_dirX_right);
             }
             else if (ball1_collisionR)
             {
                 Canvas.SetLeft(Ball1, ball1_dirX_left);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+                Canvas.SetLeft(Smiley1, smiley1_dirX_left);
             }
 
             if (ball2_collisionL)
             {
                 Canvas.SetLeft(Ball2, ball2_dirX_right);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+                Canvas.SetLeft(Smiley2, smiley2_dirX_right);
+
             }
             else if (ball2_collisionR)
             {
                 Canvas.SetLeft(Ball2, ball2_dirX_left);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+                Canvas.SetLeft(Smiley2, smiley2_dirX_left);
+
             }
 
             if (ball3_collisionL)
             {
                 Canvas.SetLeft(Ball3, ball3_dirX_right);                          // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+                Canvas.SetLeft(Smiley3, smiley3_dirX_right);
+
             }
             else if (ball3_collisionR)
             {                
                 Canvas.SetLeft(Ball3, ball3_dirX_left);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
+                Canvas.SetLeft(Smiley3, smiley3_dirX_left);
+
+
             }
 
             // Bewegungslogik der Bälle für Y-Achse
@@ -294,28 +326,40 @@ namespace YoutubeTutorialAnimierterBall
             if (ball1_collisionD)
             {
                 Canvas.SetTop(Ball1, ball1_dirY_up);
+                Canvas.SetTop(Smiley1, smiley1_dirY_up);
+
             }
             else if (ball1_collisionU)
             {
                 Canvas.SetTop(Ball1, ball1_dirY_down);
+                Canvas.SetTop(Smiley1, smiley1_dirY_down);
+
             }
 
             if (ball2_collisionD)
             {
                 Canvas.SetTop(Ball2, ball2_dirY_up);
+                Canvas.SetTop(Smiley2, smiley2_dirY_up);
+
             }
             else if (ball2_collisionU)
             {
                 Canvas.SetTop(Ball2, ball2_dirY_down);
+                Canvas.SetTop(Smiley2, smiley2_dirY_down);
+
             }
 
             if (ball3_collisionD)
             {
                 Canvas.SetTop(Ball3, ball3_dirY_up);
+                Canvas.SetTop(Smiley3, smiley3_dirY_up);
+
             }
             else if (ball3_collisionU)
             {
                 Canvas.SetTop(Ball3, ball3_dirY_down);
+                Canvas.SetTop(Smiley3, smiley3_dirY_down);
+
             }
         }
 
