@@ -15,7 +15,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button x:Name="StartStopAnimation" Content="START/STOP" Width="auto" Height="50" Margin="0,100,0,0" FontWeight="Bold" Background="Black" Foreground="OrangeRed" Click="StartStopAnimation_Click"/>
-        <Label x:Name="PositionInfo" Height="200" Width="auto" Margin="0,-220,0,0" Background="Black" Foreground="GreenYellow" FontWeight="Bold" BorderThickness="3" BorderBrush="OrangeRed"/>
+        <Label x:Name="PositionInfo" Height="200" Width="auto" Margin="0,-220,0,0" Background="Black" Foreground="GreenYellow" FontWeight="Bold" BorderThickness="0.6" BorderBrush="OrangeRed"/>
 
         <Canvas x:Name="AnimationField" Grid.Column="1" Background="DarkGreen">
             <Ellipse x:Name="Ball1" Width="50" Height="50" Canvas.Left="30" Canvas.Top="10">
