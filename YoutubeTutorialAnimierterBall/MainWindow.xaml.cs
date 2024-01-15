@@ -27,15 +27,51 @@ namespace YoutubeTutorialAnimierterBall
         private bool ball2_collisionR = false;
         private bool ball3_collisionR = false;
 
+        MediaElement sound  = new MediaElement();
+        MediaElement sound2 = new MediaElement();
+        MediaElement sound3 = new MediaElement();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            _animationTimer.Interval    = TimeSpan.FromMilliseconds(5);
+            _animationTimer.Interval    = TimeSpan.FromMilliseconds(1);
             _animationTimer.Tick        += PositioniereBall;                 // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
 
+            sound.MediaEnded            += Sound_MediaEnded;
+            sound2.MediaEnded           += Sound2_MediaEnded;
+            sound3.MediaEnded           += Sound3_MediaEnded;
+
+            sound.LoadedBehavior        = MediaState.Manual;
+            sound2.LoadedBehavior       = MediaState.Manual;
+            sound3.LoadedBehavior       = MediaState.Manual;
+
+            sound.UnloadedBehavior      = MediaState.Manual;
+            sound2.UnloadedBehavior     = MediaState.Manual;
+            sound3.UnloadedBehavior     = MediaState.Manual;
+
+            sound.Source    = new Uri("drum.mp3", UriKind.RelativeOrAbsolute);
+            sound2.Source   = new Uri("drum2.mp3", UriKind.RelativeOrAbsolute);
+            sound3.Source   = new Uri("drum3.mp3", UriKind.RelativeOrAbsolute);
+
+            ////Sound2.Play();
+            ////Sound1.Position = TimeSpan.Zero;
+
         }
+        private void Sound_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            //sound.Position  = TimeSpan.Zero;
+        }
+        private void Sound2_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            //sound2.Position = TimeSpan.Zero;
+        }
+        private void Sound3_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            //sound3.Position = TimeSpan.Zero;
+        }
+
+
 
         public void PositioniereBall(object? sender, EventArgs e)
         {
@@ -215,33 +251,51 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1_M >= AnimationField.ActualWidth - Ball1.ActualWidth / 2)         
             {
+                sound.Position = TimeSpan.Zero;
+                sound.Play();
+
                 ball1_collisionL = false;
                 ball1_collisionR = true;
             }
             else if (ball1_M <= 0 + Ball1.ActualWidth / 2)
             {
+                sound.Position = TimeSpan.Zero;
+                sound.Play();
+
                 ball1_collisionL = true;
                 ball1_collisionR = false;
             }
 
             if (ball2_M >= AnimationField.ActualWidth - Ball2.ActualWidth / 2)
             {
+                sound2.Position = TimeSpan.Zero;
+                sound2.Play();
+
                 ball2_collisionL = false;
                 ball2_collisionR = true;
             }
             else if (ball2_M <= 0 + Ball2.ActualWidth / 2)
             {
+                sound2.Position = TimeSpan.Zero;
+                sound2.Play();
+
                 ball2_collisionL = true;
                 ball2_collisionR = false;
             }
 
             if (ball3_M >= AnimationField.ActualWidth - Ball3.ActualWidth / 2)
             {
+                sound3.Position = TimeSpan.Zero;
+                sound3.Play();
+
                 ball3_collisionL = false;
                 ball3_collisionR = true;
             }
             else if (ball3_M <= 0 + Ball3.ActualWidth / 2)
             {
+                sound3.Position = TimeSpan.Zero;
+                sound3.Play();
+
                 ball3_collisionL = true;
                 ball3_collisionR = false;
             }
@@ -250,33 +304,51 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1Y >= AnimationField.ActualHeight - Ball1.ActualHeight)       
             {
+                sound.Position = TimeSpan.Zero;
+                sound.Play();
+
                 ball1_collisionD = true;
                 ball1_collisionU = false;
             }
             else if (ball1Y <= 0)
             {
+                sound.Position = TimeSpan.Zero;
+                sound.Play();
+
                 ball1_collisionU = true;
                 ball1_collisionD = false;
             }
 
             if (ball2Y >= AnimationField.ActualHeight - Ball2.ActualHeight)       
             {
+                sound2.Position = TimeSpan.Zero;
+                sound2.Play();
+
                 ball2_collisionD = true;
                 ball2_collisionU = false;
             }
             else if (ball2Y <= 0)
             {
+                sound2.Position = TimeSpan.Zero;
+                sound2.Play();
+
                 ball2_collisionU = true;
                 ball2_collisionD = false;
             }
 
             if (ball3Y >= AnimationField.ActualHeight - Ball3.ActualHeight)       
             {
+                sound3.Position = TimeSpan.Zero;
+                sound3.Play();
+
                 ball3_collisionD = true;
                 ball3_collisionU = false;
             }
             else if (ball3Y <= 0)
             {
+                sound3.Position = TimeSpan.Zero;
+                sound3.Play();
+
                 ball3_collisionU = true;
                 ball3_collisionD = false;
             }
@@ -314,7 +386,7 @@ namespace YoutubeTutorialAnimierterBall
 
             }
             else if (ball3_collisionR)
-            {                
+            {
                 Canvas.SetLeft(Ball3, ball3_dirX_left);                           // Ball im Canvas auf der X-Achse (links/rechts) bewegen !
                 Canvas.SetLeft(Smiley3, smiley3_dirX_left);
 

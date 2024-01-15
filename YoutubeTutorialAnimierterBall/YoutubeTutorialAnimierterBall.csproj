@@ -9,11 +9,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="drum2.mp3" />
+    <None Remove="drum3.mp3" />
     <None Remove="Smiley.png" />
+	<None Remove="drum.mp3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Smiley.png" />
+    <Resource Include="Smiley.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+	<EmbeddedResource Include="drum.mp3">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</EmbeddedResource>
+	<EmbeddedResource Include="drum2.mp3">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</EmbeddedResource>
+	<EmbeddedResource Include="drum3.mp3">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</EmbeddedResource>
+
   </ItemGroup>
 
 </Project>
