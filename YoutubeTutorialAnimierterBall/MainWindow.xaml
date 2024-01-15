@@ -6,15 +6,42 @@
         xmlns:local="clr-namespace:YoutubeTutorialAnimierterBall"
         mc:Ignorable="d"
         Title="Ball Animation im Canvas Objekt" Height="450" Width="700">
+    <!--Control Template Override für Buttons um Highlighting bei Mouseover zu verhindern !-->
+    <Window.Resources>
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate"
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+             Value="False">
+                    <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <!--Control Templates Override ENDE !-->
+
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="StartStopAnimation" Content="START/STOP" Width="auto" Height="50" Margin="0,100,0,0" FontWeight="Bold" Background="Black" Foreground="OrangeRed" Click="StartStopAnimation_Click"/>
+        <Button x:Name="StartStopAnimation" Content="START/STOP" Width="auto" Height="50" Margin="0,100,0,0" FontWeight="Bold" Background="Black" Foreground="OrangeRed" Click="StartStopAnimation_Click" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+        <Button x:Name="SoundOnOff" Content="Soundeffekte AN/AUS" Width="auto" Height="50" Margin="0,250,0,0" Background="Black" FontWeight="Bold" Foreground="OrangeRed" FontSize="10" ClickMode="Release" Click="SoundOnOff_Click" Template="{StaticResource NoMouseOverButtonTemplate}"/>
+
         <Label x:Name="PositionInfo" Height="200" Width="auto" Margin="0,-220,0,0" Background="Black" Foreground="GreenYellow" FontWeight="Bold" BorderThickness="0.6" BorderBrush="OrangeRed"/>
         <Canvas x:Name="AnimationField" Grid.Column="1" Background="DarkGreen">
             <Label x:Name="Smiley1" Content="1" Height="20" Width="20" Foreground="DarkOrange" Background="DarkRed" FontSize="13" Padding="0,0,0,5" FontWeight="Bold" Canvas.Top="10" Canvas.Left="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
@@ -36,6 +63,11 @@
                     <ImageBrush ImageSource="/Smiley.png"/>
                 </Ellipse.Fill>
             </Ellipse>
+
+            <MediaElement x:Name="sound" LoadedBehavior="Manual"/>
+            <MediaElement x:Name="sound2" LoadedBehavior="Manual"/>
+            <MediaElement x:Name="sound3" LoadedBehavior="Manual"/>
+
         </Canvas>
     </Grid>
 </Window>
