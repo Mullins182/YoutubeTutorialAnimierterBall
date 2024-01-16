@@ -122,7 +122,7 @@ namespace YoutubeTutorialAnimierterBall
             //var distY_b1_b3 = Math.Sqrt(Math.Pow(ball1_M - ball3_M, 2) + Math.Pow(ball1yM - ball3yM, 2));
             //var distY_b2_b3 = Math.Sqrt(Math.Pow(ball2_M - ball3_M, 2) + Math.Pow(ball2yM - ball3yM, 2));
 
-            PositionInfo.Content = $"Dist B1 > B2: {dist_b1_b2} \n\nDist B1 > B3: {dist_b1_b3} \n\nDist B2 > B3: {dist_b2_b3} \n\nBall 1 Y-Pos: {((Int16)ball1Y)} \n\nBall 2 Y-Pos: {((Int16)ball2Y)} \n\nBall 3 Y-Pos: {((Int16)ball3Y)}";
+            PositionInfo.Content = $"Dist B1 > B2: { Math.Round(dist_b1_b2, 3)} \n\nDist B1 > B3: {Math.Round(dist_b1_b3, 3)} \n\nDist B2 > B3: {Math.Round(dist_b2_b3, 3)} \n\nBall 1 Y-Pos: {((Int16)ball1Y)} \n\nBall 2 Y-Pos: {((Int16)ball2Y)} \n\nBall 3 Y-Pos: {((Int16)ball3Y)}";
 
             // Kollisionslogik Ball-Kollisionen (X-Achse)                               I N  A R B E I T !!!
 
