@@ -29,7 +29,11 @@ namespace YoutubeTutorialAnimierterBall
         private bool ball2_collisionR = false;
         private bool ball3_collisionR = false;
 
-        //private Int16 counter = 0;
+        private int collision_counter       = 0;
+        private int collision_sound_counter = 0;
+
+        private bool sound1_played = false;
+        private bool sound2_played = false;
 
         public MainWindow()
         {
@@ -59,6 +63,7 @@ namespace YoutubeTutorialAnimierterBall
 
         public void PositioniereBall(object? sender, EventArgs e)
         {
+            
             var smiley1X = Canvas.GetLeft(Smiley1);
             var smiley2X = Canvas.GetLeft(Smiley2);
             var smiley3X = Canvas.GetLeft(Smiley3);
@@ -128,6 +133,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionL = false;
                 ball2_collisionR = false;
                 ball2_collisionL = true;
+
+                collision_counter++;
             }
             else if (dist_b1_b2 < Ball2.ActualWidth && ball2_M < ball1_M)
             {
@@ -135,6 +142,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionL = true;
                 ball2_collisionR = true;
                 ball2_collisionL = false;
+
+                collision_counter++;
             }
 
             if (dist_b1_b3 < Ball3.ActualWidth && ball3_M > ball1_M)
@@ -143,6 +152,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionL = false;
                 ball3_collisionR = false;
                 ball3_collisionL = true;
+
+                collision_counter++;
             }
             else if (dist_b1_b3 < Ball3.ActualWidth && ball3_M < ball1_M)
             {
@@ -150,6 +161,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionL = true;
                 ball3_collisionR = true;
                 ball3_collisionL = false;
+
+                collision_counter++;
             }
 
             if (dist_b2_b3 < Ball3.ActualWidth && ball3_M > ball2_M)
@@ -158,6 +171,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball2_collisionL = false;
                 ball3_collisionR = false;
                 ball3_collisionL = true;
+
+                collision_counter++;
             }
             else if (dist_b2_b3 < Ball3.ActualWidth && ball3_M < ball2_M)
             {
@@ -165,6 +180,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball2_collisionL = true;
                 ball3_collisionR = true;
                 ball3_collisionL = false;
+
+                collision_counter++;
             }
 
             // Kollisionslogik Ball-Kollisionen (Y-Achse)                               I N  A R B E I T !!!
@@ -175,6 +192,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionU = false;
                 ball2_collisionD = false;
                 ball2_collisionU = true;
+
+                collision_counter++;
             }
             else if (dist_b1_b2 < Ball2.ActualHeight && ball2yM < ball1yM)
             {
@@ -182,6 +201,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionU = true;
                 ball2_collisionD = true;
                 ball2_collisionU = false;
+
+                collision_counter++;
             }
 
             if (dist_b1_b3 < Ball3.ActualHeight && ball3yM > ball1yM)
@@ -190,6 +211,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionU = false;
                 ball3_collisionD = false;
                 ball3_collisionU = true;
+
+                collision_counter++;
             }
             else if (dist_b1_b3 < Ball3.ActualHeight && ball3yM < ball1yM)
             {
@@ -197,6 +220,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball1_collisionU = true;
                 ball3_collisionD = true;
                 ball3_collisionU = false;
+
+                collision_counter++;
             }
 
             if (dist_b2_b3 < Ball3.ActualHeight && ball3yM > ball2yM)
@@ -205,6 +230,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball2_collisionU = false;
                 ball3_collisionD = false;
                 ball3_collisionU = true;
+
+                collision_counter++;
             }
             else if (dist_b2_b3 < Ball3.ActualHeight && ball3yM < ball2yM)
             {
@@ -212,6 +239,8 @@ namespace YoutubeTutorialAnimierterBall
                 ball2_collisionU = true;
                 ball3_collisionD = true;
                 ball3_collisionU = false;
+
+                collision_counter++;
             }
 
 
@@ -219,16 +248,16 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1_M >= AnimationField.ActualWidth - Ball1.ActualWidth / 2)         
             {
-                sound.Position = TimeSpan.Zero;
-                sound.Play();
+                //sound.Position = TimeSpan.Zero;
+                //sound.Play();
 
                 ball1_collisionL = false;
                 ball1_collisionR = true;
             }
             else if (ball1_M <= 0 + Ball1.ActualWidth / 2)
             {
-                sound.Position = TimeSpan.Zero;
-                sound.Play();
+                //sound.Position = TimeSpan.Zero;
+                //sound.Play();
 
                 ball1_collisionL = true;
                 ball1_collisionR = false;
@@ -236,16 +265,16 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball2_M >= AnimationField.ActualWidth - Ball2.ActualWidth / 2)
             {
-                sound2.Position = TimeSpan.Zero;
-                sound2.Play();
+                //sound2.Position = TimeSpan.Zero;
+                //sound2.Play();
 
                 ball2_collisionL = false;
                 ball2_collisionR = true;
             }
             else if (ball2_M <= 0 + Ball2.ActualWidth / 2)
             {
-                sound2.Position = TimeSpan.Zero;
-                sound2.Play();
+                //sound2.Position = TimeSpan.Zero;
+                //sound2.Play();
 
                 ball2_collisionL = true;
                 ball2_collisionR = false;
@@ -253,16 +282,16 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball3_M >= AnimationField.ActualWidth - Ball3.ActualWidth / 2)
             {
-                sound3.Position = TimeSpan.Zero;
-                sound3.Play();
+                //sound3.Position = TimeSpan.Zero;
+                //sound3.Play();
 
                 ball3_collisionL = false;
                 ball3_collisionR = true;
             }
             else if (ball3_M <= 0 + Ball3.ActualWidth / 2)
             {
-                sound3.Position = TimeSpan.Zero;
-                sound3.Play();
+                //sound3.Position = TimeSpan.Zero;
+                //sound3.Play();
 
                 ball3_collisionL = true;
                 ball3_collisionR = false;
@@ -272,16 +301,16 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1Y >= AnimationField.ActualHeight - Ball1.ActualHeight)       
             {
-                sound.Position = TimeSpan.Zero;
-                sound.Play();
+                //sound.Position = TimeSpan.Zero;
+                //sound.Play();
 
                 ball1_collisionD = true;
                 ball1_collisionU = false;
             }
             else if (ball1Y <= 0)
             {
-                sound.Position = TimeSpan.Zero;
-                sound.Play();
+                //sound.Position = TimeSpan.Zero;
+                //sound.Play();
 
                 ball1_collisionU = true;
                 ball1_collisionD = false;
@@ -289,16 +318,16 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball2Y >= AnimationField.ActualHeight - Ball2.ActualHeight)       
             {
-                sound2.Position = TimeSpan.Zero;
-                sound2.Play();
+                //sound2.Position = TimeSpan.Zero;
+                //sound2.Play();
 
                 ball2_collisionD = true;
                 ball2_collisionU = false;
             }
             else if (ball2Y <= 0)
             {
-                sound2.Position = TimeSpan.Zero;
-                sound2.Play();
+                //sound2.Position = TimeSpan.Zero;
+                //sound2.Play();
 
                 ball2_collisionU = true;
                 ball2_collisionD = false;
@@ -306,20 +335,48 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball3Y >= AnimationField.ActualHeight - Ball3.ActualHeight)       
             {
-                sound3.Position = TimeSpan.Zero;
-                sound3.Play();
+                //sound3.Position = TimeSpan.Zero;
+                //sound3.Play();
 
                 ball3_collisionD = true;
                 ball3_collisionU = false;
             }
             else if (ball3Y <= 0)
             {
-                sound3.Position = TimeSpan.Zero;
-                sound3.Play();
+                //sound3.Position = TimeSpan.Zero;
+                //sound3.Play();
 
                 ball3_collisionU = true;
                 ball3_collisionD = false;
             }
+
+            // Kollisionssound-Logik (Bälle)
+
+            if (collision_sound_counter < collision_counter)
+            {
+                if (!sound1_played)
+                {
+                    sound.Position = TimeSpan.Zero;
+                    sound.Play();
+                    sound1_played = true;
+                }
+                else if (!sound2_played)
+                {
+                    sound2.Position = TimeSpan.Zero;
+                    sound2.Play();
+                    sound2_played = true;
+                }
+                else
+                {
+                    sound3.Position = TimeSpan.Zero;
+                    sound3.Play();
+                    sound1_played = false;
+                    sound2_played = false;
+                }
+
+                collision_sound_counter++;
+            }
+
 
             // Bewegungslogik der Bälle für X-Achse
 
@@ -413,6 +470,18 @@ namespace YoutubeTutorialAnimierterBall
             {
                 _animationTimer.Start();
             }
+
+            if (StartStopAnimation.Foreground == Brushes.OrangeRed)
+            {
+                StartStopAnimation.Foreground = Brushes.GreenYellow;
+
+            }
+            else
+            {
+                StartStopAnimation.Foreground = Brushes.OrangeRed;
+
+            }
+
 
             //var mitteX = AnimationField.ActualWidth / 2;          
             //var mitteY = AnimationField.ActualHeight / 2;
