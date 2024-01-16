@@ -67,6 +67,9 @@
             <MediaElement x:Name="sound" LoadedBehavior="Manual"/>
             <MediaElement x:Name="sound2" LoadedBehavior="Manual"/>
             <MediaElement x:Name="sound3" LoadedBehavior="Manual"/>
+            <MediaElement x:Name="sound4" LoadedBehavior="Manual"/>
+            <MediaElement x:Name="sound5" LoadedBehavior="Manual"/>
+            <MediaElement x:Name="sound6" LoadedBehavior="Manual"/>
 
         </Canvas>
     </Grid>

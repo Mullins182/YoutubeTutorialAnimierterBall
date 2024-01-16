@@ -32,8 +32,12 @@ namespace YoutubeTutorialAnimierterBall
         private int collision_counter       = 0;
         private int collision_sound_counter = 0;
 
-        private bool sound1_played = false;
-        private bool sound2_played = false;
+        private bool sound_off      = true;
+        private bool sound1_played  = false;
+        private bool sound2_played  = false;
+        private bool sound4_played  = false;
+        private bool sound5_played  = false;
+        private bool wallHit        = false;
 
         public MainWindow()
         {
@@ -42,24 +46,22 @@ namespace YoutubeTutorialAnimierterBall
             _animationTimer.Interval    = TimeSpan.FromMilliseconds(1);
             _animationTimer.Tick        += PositioniereBall;                 // Die Methode unter diesem "Tick" wird immer ausgeführt, wenn der Timer abgelaufen ist !
 
-            sound.MediaEnded            += Sound_MediaEnded;
-            sound2.MediaEnded           += Sound2_MediaEnded;
-            sound3.MediaEnded           += Sound3_MediaEnded;
+            //sound.MediaEnded            += Sound_MediaEnded;
+            //sound2.MediaEnded           += Sound2_MediaEnded;
+            //sound3.MediaEnded           += Sound3_MediaEnded;
         }
-        private void Sound_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            //sound.Position  = TimeSpan.Zero;
-        }
-        private void Sound2_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            //sound2.Position = TimeSpan.Zero;
-        }
-        private void Sound3_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            //sound3.Position = TimeSpan.Zero;
-        }
-
-
+        //private void Sound_MediaEnded(object sender, RoutedEventArgs e)
+        //{
+        //    //sound.Position  = TimeSpan.Zero;
+        //}
+        //private void Sound2_MediaEnded(object sender, RoutedEventArgs e)
+        //{
+        //    //sound2.Position = TimeSpan.Zero;
+        //}
+        //private void Sound3_MediaEnded(object sender, RoutedEventArgs e)
+        //{
+        //    //sound3.Position = TimeSpan.Zero;
+        //}
 
         public void PositioniereBall(object? sender, EventArgs e)
         {
@@ -117,10 +119,6 @@ namespace YoutubeTutorialAnimierterBall
             var dist_b1_b2 = Math.Sqrt(Math.Pow(ball1_M - ball2_M, 2) + Math.Pow(ball1yM - ball2yM, 2));
             var dist_b1_b3 = Math.Sqrt(Math.Pow(ball1_M - ball3_M, 2) + Math.Pow(ball1yM - ball3yM, 2));
             var dist_b2_b3 = Math.Sqrt(Math.Pow(ball2_M - ball3_M, 2) + Math.Pow(ball2yM - ball3yM, 2));
-
-            //var distY_b1_b2 = Math.Sqrt(Math.Pow(ball1_M - ball2_M, 2) + Math.Pow(ball1yM - ball2yM, 2));
-            //var distY_b1_b3 = Math.Sqrt(Math.Pow(ball1_M - ball3_M, 2) + Math.Pow(ball1yM - ball3yM, 2));
-            //var distY_b2_b3 = Math.Sqrt(Math.Pow(ball2_M - ball3_M, 2) + Math.Pow(ball2yM - ball3yM, 2));
 
             PositionInfo.Content = $"Dist B1 > B2: { Math.Round(dist_b1_b2, 3)} \n\nDist B1 > B3: {Math.Round(dist_b1_b3, 3)} \n\nDist B2 > B3: {Math.Round(dist_b2_b3, 3)} \n\nBall 1 Y-Pos: {((Int16)ball1Y)} \n\nBall 2 Y-Pos: {((Int16)ball2Y)} \n\nBall 3 Y-Pos: {((Int16)ball3Y)}";
 
@@ -248,16 +246,14 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1_M >= AnimationField.ActualWidth - Ball1.ActualWidth / 2)         
             {
-                //sound.Position = TimeSpan.Zero;
-                //sound.Play();
+                wallHit = true;
 
                 ball1_collisionL = false;
                 ball1_collisionR = true;
             }
             else if (ball1_M <= 0 + Ball1.ActualWidth / 2)
             {
-                //sound.Position = TimeSpan.Zero;
-                //sound.Play();
+                wallHit = true;
 
                 ball1_collisionL = true;
                 ball1_collisionR = false;
@@ -265,16 +261,14 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball2_M >= AnimationField.ActualWidth - Ball2.ActualWidth / 2)
             {
-                //sound2.Position = TimeSpan.Zero;
-                //sound2.Play();
+                wallHit = true;
 
                 ball2_collisionL = false;
                 ball2_collisionR = true;
             }
             else if (ball2_M <= 0 + Ball2.ActualWidth / 2)
             {
-                //sound2.Position = TimeSpan.Zero;
-                //sound2.Play();
+                wallHit = true;
 
                 ball2_collisionL = true;
                 ball2_collisionR = false;
@@ -282,16 +276,14 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball3_M >= AnimationField.ActualWidth - Ball3.ActualWidth / 2)
             {
-                //sound3.Position = TimeSpan.Zero;
-                //sound3.Play();
+                wallHit = true;
 
                 ball3_collisionL = false;
                 ball3_collisionR = true;
             }
             else if (ball3_M <= 0 + Ball3.ActualWidth / 2)
             {
-                //sound3.Position = TimeSpan.Zero;
-                //sound3.Play();
+                wallHit = true;
 
                 ball3_collisionL = true;
                 ball3_collisionR = false;
@@ -301,16 +293,14 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball1Y >= AnimationField.ActualHeight - Ball1.ActualHeight)       
             {
-                //sound.Position = TimeSpan.Zero;
-                //sound.Play();
+                wallHit = true;
 
                 ball1_collisionD = true;
                 ball1_collisionU = false;
             }
             else if (ball1Y <= 0)
             {
-                //sound.Position = TimeSpan.Zero;
-                //sound.Play();
+                wallHit = true;
 
                 ball1_collisionU = true;
                 ball1_collisionD = false;
@@ -318,16 +308,14 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball2Y >= AnimationField.ActualHeight - Ball2.ActualHeight)       
             {
-                //sound2.Position = TimeSpan.Zero;
-                //sound2.Play();
+                wallHit = true;
 
                 ball2_collisionD = true;
                 ball2_collisionU = false;
             }
             else if (ball2Y <= 0)
             {
-                //sound2.Position = TimeSpan.Zero;
-                //sound2.Play();
+                wallHit = true;
 
                 ball2_collisionU = true;
                 ball2_collisionD = false;
@@ -335,16 +323,14 @@ namespace YoutubeTutorialAnimierterBall
 
             if (ball3Y >= AnimationField.ActualHeight - Ball3.ActualHeight)       
             {
-                //sound3.Position = TimeSpan.Zero;
-                //sound3.Play();
+                wallHit = true;
 
                 ball3_collisionD = true;
                 ball3_collisionU = false;
             }
             else if (ball3Y <= 0)
             {
-                //sound3.Position = TimeSpan.Zero;
-                //sound3.Play();
+                wallHit = true;
 
                 ball3_collisionU = true;
                 ball3_collisionD = false;
@@ -352,31 +338,63 @@ namespace YoutubeTutorialAnimierterBall
 
             // Kollisionssound-Logik (Bälle)
 
-            if (collision_sound_counter < collision_counter)
+            if (!sound_off)
             {
-                if (!sound1_played)
+                if (wallHit)
                 {
-                    sound.Position = TimeSpan.Zero;
-                    sound.Play();
-                    sound1_played = true;
-                }
-                else if (!sound2_played)
-                {
-                    sound2.Position = TimeSpan.Zero;
-                    sound2.Play();
-                    sound2_played = true;
-                }
-                else
-                {
-                    sound3.Position = TimeSpan.Zero;
-                    sound3.Play();
-                    sound1_played = false;
-                    sound2_played = false;
+                    if (!sound4_played)
+                    {
+                        sound4.Position = TimeSpan.Zero;
+                        sound4.Play();
+                        sound4_played = true;
+                    }
+                    else if (!sound5_played)
+                    {
+                        sound5.Position = TimeSpan.Zero;
+                        sound5.Play();
+                        sound5_played = true;
+                    }
+                    else
+                    {
+                        sound6.Position = TimeSpan.Zero;
+                        sound6.Play();
+                        sound4_played = false;
+                        sound5_played = false;
+                    }
+
+                    wallHit = false;
                 }
 
-                collision_sound_counter++;
+                if (collision_sound_counter < collision_counter)
+                {
+                    if (!sound1_played)
+                    {
+                        sound.Position = TimeSpan.Zero;
+                        sound.Play();
+                        sound1_played = true;
+                    }
+                    else if (!sound2_played)
+                    {
+                        sound2.Position = TimeSpan.Zero;
+                        sound2.Play();
+                        sound2_played = true;
+                    }
+                    else
+                    {
+                        sound3.Position = TimeSpan.Zero;
+                        sound3.Play();
+                        sound1_played = false;
+                        sound2_played = false;
+                    }
+
+                    collision_sound_counter++;
+                }
             }
-
+            else
+            {
+                collision_sound_counter = collision_counter;
+                wallHit = false;
+            }
 
             // Bewegungslogik der Bälle für X-Achse
 
@@ -494,27 +512,50 @@ namespace YoutubeTutorialAnimierterBall
         {
             if (SoundOnOff.Foreground == Brushes.OrangeRed)
             {
-                SoundOnOff.Foreground = Brushes.GreenYellow;
-
-                sound.Source = new Uri("drum.mp3", UriKind.RelativeOrAbsolute);
-                sound2.Source = new Uri("drum2.mp3", UriKind.RelativeOrAbsolute);
-                sound3.Source = new Uri("drum3.mp3", UriKind.RelativeOrAbsolute);
-
-                sound.Stop();
-                sound2.Stop();
-                sound3.Stop();
-            }
-            else
-            {
                 sound.Close();
                 sound2.Close();
                 sound3.Close();
+                sound4.Close();
+                sound5.Close();
+                sound6.Close();
+
+                SoundOnOff.Foreground = Brushes.GreenYellow;
+
+                sound.Source    = new Uri("drum.mp3", UriKind.RelativeOrAbsolute);
+                sound2.Source   = new Uri("drum.mp3", UriKind.RelativeOrAbsolute);
+                sound3.Source   = new Uri("drum.mp3", UriKind.RelativeOrAbsolute);
+                sound4.Source   = new Uri("classic_piouh.mp3", UriKind.RelativeOrAbsolute);
+                sound5.Source   = new Uri("classic_piouh.mp3", UriKind.RelativeOrAbsolute);
+                sound6.Source   = new Uri("classic_piouh.mp3", UriKind.RelativeOrAbsolute);
+
+                sound.Position  = TimeSpan.Zero;
+                sound2.Position = TimeSpan.Zero;
+                sound3.Position = TimeSpan.Zero;
+                sound4.Position = TimeSpan.Zero;
+                sound5.Position = TimeSpan.Zero;
+                sound6.Position = TimeSpan.Zero;
+
+                sound_off = false;
+            }
+            else
+            {
+                sound_off = true;
 
                 SoundOnOff.Foreground = Brushes.OrangeRed;
 
-                sound.Source = new Uri("", UriKind.RelativeOrAbsolute);
-                sound2.Source = new Uri("", UriKind.RelativeOrAbsolute);
-                sound3.Source = new Uri("", UriKind.RelativeOrAbsolute);
+                //sound.Source = new Uri(" ", UriKind.Absolute);
+                //sound2.Source = new Uri(" ", UriKind.Absolute);            // Verursacht Fehler und Programmabsturz("The Uri is empty"), wenn Sound ausgeschalt. wird !
+                //sound3.Source = new Uri(" ", UriKind.Absolute);
+                //sound4.Source = new Uri(" ", UriKind.Absolute);
+                //sound5.Source = new Uri(" ", UriKind.Absolute);
+                //sound6.Source = new Uri(" ", UriKind.Absolute);
+
+                sound.Close();
+                sound2.Close();
+                sound3.Close();
+                sound4.Close();
+                sound5.Close();
+                sound6.Close();
             }
         }
     }
