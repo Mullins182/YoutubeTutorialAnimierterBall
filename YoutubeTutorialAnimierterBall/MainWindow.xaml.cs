@@ -127,19 +127,69 @@ namespace YoutubeTutorialAnimierterBall
 
             if (dist_b1_b2 < Ball2.ActualWidth && ball2_M > ball1_M)
             {
-                ball1_collisionR = true;
-                ball1_collisionL = false;
-                ball2_collisionR = false;
-                ball2_collisionL = true;
+                if(Canvas.GetTop(Ball1) < Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionD = false;
+                    ball1_collisionU = true;
+                    ball2_collisionD = true;
+                    ball2_collisionU = false;
+                    ball1_collisionR = true;
+                    ball1_collisionL = false;
+                    ball2_collisionR = false;
+                    ball2_collisionL = true;
+                }
+                else if(Canvas.GetTop(Ball1) > Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionD = false;
+                    ball1_collisionU = true;
+                    ball2_collisionD = true;
+                    ball2_collisionU = false;
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
+                else
+                {
+                    ball1_collisionR = true;
+                    ball1_collisionL = false;
+                    ball2_collisionR = false;
+                    ball2_collisionL = true;
+                }
 
                 collision_counter++;
             }
             else if (dist_b1_b2 < Ball2.ActualWidth && ball2_M < ball1_M)
             {
-                ball1_collisionR = false;
-                ball1_collisionL = true;
-                ball2_collisionR = true;
-                ball2_collisionL = false;
+                if (Canvas.GetTop(Ball1) < Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionD = false;
+                    ball1_collisionU = true;
+                    ball2_collisionD = true;
+                    ball2_collisionU = false;
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
+                else if (Canvas.GetTop(Ball1) > Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionU = true;
+                    ball1_collisionD = false;
+                    ball2_collisionU = false;
+                    ball2_collisionD = true;
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
+                else
+                {
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
 
                 collision_counter++;
             }
