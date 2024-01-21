@@ -102,21 +102,21 @@ namespace YoutubeTutorialAnimierterBall
             var smiley2_dirY_up     = smiley2Y - 1;
             var smiley3_dirY_up     = smiley3Y - 1;
 
-            var ball1_dirX_right    = ball1X + 1;
+            var ball1_dirX_right    = ball1X + 1;               // Ball Bewegung auf der x-Achse
             var ball2_dirX_right    = ball2X + 1;
             var ball3_dirX_right    = ball3X + 1;
             var ball1_dirX_left     = ball1X - 1;
             var ball2_dirX_left     = ball2X - 1;
             var ball3_dirX_left     = ball3X - 1;
 
-            var ball1_dirY_down     = ball1Y + 1;
+            var ball1_dirY_down     = ball1Y + 1;               // Ball Bewegung auf der Y-Achse
             var ball2_dirY_down     = ball2Y + 1;
             var ball3_dirY_down     = ball3Y + 1;
             var ball1_dirY_up       = ball1Y - 1;
             var ball2_dirY_up       = ball2Y - 1;
             var ball3_dirY_up       = ball3Y - 1;
 
-            var dist_b1_b2 = Math.Sqrt(Math.Pow(ball1_M - ball2_M, 2) + Math.Pow(ball1yM - ball2yM, 2));
+            var dist_b1_b2 = Math.Sqrt(Math.Pow(ball1_M - ball2_M, 2) + Math.Pow(ball1yM - ball2yM, 2));    // Distanz zwischen Ball1 und Ball2
             var dist_b1_b3 = Math.Sqrt(Math.Pow(ball1_M - ball3_M, 2) + Math.Pow(ball1yM - ball3yM, 2));
             var dist_b2_b3 = Math.Sqrt(Math.Pow(ball2_M - ball3_M, 2) + Math.Pow(ball2yM - ball3yM, 2));
 
