@@ -102,21 +102,21 @@ namespace YoutubeTutorialAnimierterBall
             var smiley2_dirY_up     = smiley2Y - 1;
             var smiley3_dirY_up     = smiley3Y - 1;
 
-            var ball1_dirX_right    = ball1X + 1;
+            var ball1_dirX_right    = ball1X + 1;               // Ball Bewegung auf der x-Achse
             var ball2_dirX_right    = ball2X + 1;
             var ball3_dirX_right    = ball3X + 1;
             var ball1_dirX_left     = ball1X - 1;
             var ball2_dirX_left     = ball2X - 1;
             var ball3_dirX_left     = ball3X - 1;
 
-            var ball1_dirY_down     = ball1Y + 1;
+            var ball1_dirY_down     = ball1Y + 1;               // Ball Bewegung auf der Y-Achse
             var ball2_dirY_down     = ball2Y + 1;
             var ball3_dirY_down     = ball3Y + 1;
             var ball1_dirY_up       = ball1Y - 1;
             var ball2_dirY_up       = ball2Y - 1;
             var ball3_dirY_up       = ball3Y - 1;
 
-            var dist_b1_b2 = Math.Sqrt(Math.Pow(ball1_M - ball2_M, 2) + Math.Pow(ball1yM - ball2yM, 2));
+            var dist_b1_b2 = Math.Sqrt(Math.Pow(ball1_M - ball2_M, 2) + Math.Pow(ball1yM - ball2yM, 2));    // Distanz zwischen Ball1 und Ball2
             var dist_b1_b3 = Math.Sqrt(Math.Pow(ball1_M - ball3_M, 2) + Math.Pow(ball1yM - ball3yM, 2));
             var dist_b2_b3 = Math.Sqrt(Math.Pow(ball2_M - ball3_M, 2) + Math.Pow(ball2yM - ball3yM, 2));
 
@@ -127,19 +127,69 @@ namespace YoutubeTutorialAnimierterBall
 
             if (dist_b1_b2 < Ball2.ActualWidth && ball2_M > ball1_M)
             {
-                ball1_collisionR = true;
-                ball1_collisionL = false;
-                ball2_collisionR = false;
-                ball2_collisionL = true;
+                if(Canvas.GetTop(Ball1) < Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionD = false;
+                    ball1_collisionU = true;
+                    ball2_collisionD = true;
+                    ball2_collisionU = false;
+                    ball1_collisionR = true;
+                    ball1_collisionL = false;
+                    ball2_collisionR = false;
+                    ball2_collisionL = true;
+                }
+                else if(Canvas.GetTop(Ball1) > Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionD = false;
+                    ball1_collisionU = true;
+                    ball2_collisionD = true;
+                    ball2_collisionU = false;
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
+                else
+                {
+                    ball1_collisionR = true;
+                    ball1_collisionL = false;
+                    ball2_collisionR = false;
+                    ball2_collisionL = true;
+                }
 
                 collision_counter++;
             }
             else if (dist_b1_b2 < Ball2.ActualWidth && ball2_M < ball1_M)
             {
-                ball1_collisionR = false;
-                ball1_collisionL = true;
-                ball2_collisionR = true;
-                ball2_collisionL = false;
+                if (Canvas.GetTop(Ball1) < Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionD = false;
+                    ball1_collisionU = true;
+                    ball2_collisionD = true;
+                    ball2_collisionU = false;
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
+                else if (Canvas.GetTop(Ball1) > Canvas.GetTop(Ball2))
+                {
+                    ball1_collisionU = true;
+                    ball1_collisionD = false;
+                    ball2_collisionU = false;
+                    ball2_collisionD = true;
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
+                else
+                {
+                    ball1_collisionR = false;
+                    ball1_collisionL = true;
+                    ball2_collisionR = true;
+                    ball2_collisionL = false;
+                }
 
                 collision_counter++;
             }
